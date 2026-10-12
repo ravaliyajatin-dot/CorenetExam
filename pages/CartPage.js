@@ -28,6 +28,8 @@ class CartPage {
 
     // --- Order Confirmation ---
     this.generatePdfButton = page.locator('[data-test="generate-pdf-order"]');
+    this.backToProductsButton = page.locator('[data-test="back-to-products"]');
+    this.pageTitle            = page.locator('[data-test="title"]');
   }
 
   /** Click Add to Cart for Sauce Labs Backpack */
@@ -79,8 +81,18 @@ class CartPage {
       this.page.waitForEvent("download"),
       this.generatePdfButton.click(),
     ]);
-    const fileName = download.suggestedFilename();
-    return fileName;
+    return download.suggestedFilename();
+  }
+
+  /** Click Back Home button after PDF download */
+  async clickBackToProducts() {
+    await this.backToProductsButton.click();
+  }
+
+  /** Get page title text */
+  async getPageTitle() {
+    await this.pageTitle.waitFor({ state: "visible" });
+    return await this.pageTitle.textContent();
   }
 }
 

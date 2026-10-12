@@ -23,10 +23,20 @@ When("user adds backpack to cart and completes checkout", async function () {
   this.downloadedFileName = await this.cartPage.clickGeneratePdf();
 });
 
+When("user clicks Back Home button", async function () {
+  await this.cartPage.clickBackToProducts();
+});
+
 Then("the button text should change to {string}", async function (expectedText) {
   await expect(this.cartPage.removeBackpackButton).toHaveText(expectedText);
 });
 
 Then("a PDF file with name matching {string} should be downloaded", async function (expectedPattern) {
   expect(this.downloadedFileName).toContain(expectedPattern);
+});
+
+Then("user should see {string} title on products page", async function (expectedTitle) {
+  await expect(this.cartPage.pageTitle).toBeVisible({ timeout: 10000 });
+  const actualTitle = await this.cartPage.getPageTitle();
+  expect(actualTitle.trim()).toBe(expectedTitle);
 });

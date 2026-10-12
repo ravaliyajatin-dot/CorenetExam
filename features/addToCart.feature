@@ -9,3 +9,5 @@ Feature: Add to Cart
     Given user is logged in with valid credentials
     When user adds backpack to cart and completes checkout
     Then a PDF file with name matching "swag-labs-order" should be downloaded
+    When user clicks Back Home button
+    Then user should see "Products" title on products page
