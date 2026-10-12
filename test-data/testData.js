@@ -10,12 +10,14 @@ const testData = {
     username: "locked_out_user",
     password: "secret_sauce",
     expectedTitle: "",
+    expectedError: "Epic sadface: Sorry, this user has been locked out.",
   },
 
   invalidUser: {
     username: "invalid_user",
     password: "wrong_password",
     expectedTitle: "",
+    expectedError: "Epic sadface to the rescue! Username and password do not match any user in this service",
   },
 
   // --- Checkout Data ---

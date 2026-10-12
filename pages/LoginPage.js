@@ -11,6 +11,7 @@ class LoginPage {
     this.passwordInput = page.locator('[data-test="password"]');
     this.loginButton   = page.locator('[data-test="login-button"]');
     this.pageTitle     = page.locator('[data-test="title"]');
+    this.errorMessage  = page.locator('[data-test="error"]');
   }
 
   async navigateTo() {
@@ -38,6 +39,11 @@ class LoginPage {
 
   async isTitleVisible() {
     return await this.pageTitle.isVisible();
+  }
+
+  async getErrorMessage() {
+    await this.errorMessage.waitFor({ state: "visible" });
+    return await this.errorMessage.textContent();
   }
 }
 
